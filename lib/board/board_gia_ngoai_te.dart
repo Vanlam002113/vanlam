@@ -6,6 +6,7 @@ class GiaNgoaiTe extends StatelessWidget {
     super.key,
     required this.item,
   });
+  // ignore: prefer_typing_uninitialized_variables
   var item;
 
   @override
@@ -16,7 +17,7 @@ class GiaNgoaiTe extends StatelessWidget {
         color: Colors.amber,
       ),
       height: 20,
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

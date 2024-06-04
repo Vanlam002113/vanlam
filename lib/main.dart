@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gia_tien/body/body_gia_vang.dart';
-
+import 'package:gia_tien/body/body_quy_doi.dart';
 import 'package:gia_tien/body/body_ty_gia.dart';
+import 'package:gia_tien/body/lib/body_profile.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:hive/hive.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+
   runApp(const MyApp());
 }
 
@@ -12,14 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Giá Vàng",
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
@@ -35,10 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int tapCount = 0;
   int selectedIndex = 0;
   final Widget _myGiaVang = const MyGiaVang();
-  final Widget _myTyGia = const MyTyGia();
-  final Widget _myTinTuc = const MyTinTuc();
-  final Widget _myProfile = const MyProfile();
   final Widget _myQuyDoi = const MyQuyDoi();
+  final Widget _myTyGia = const MyTyGia();
+  final Widget _myProfile = const MyProfile();
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
               label: "Quy Đổi Tiền"),
           BottomNavigationBarItem(
               icon: Icon(Icons.attach_money), label: "Giá Vàng"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.newspaper), label: "Tin Tức"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
         ],
         onTap: (int index) {
@@ -73,8 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
       return _myQuyDoi;
     } else if (selectedIndex == 2) {
       return _myGiaVang;
-    } else if (selectedIndex == 3) {
-      return _myTinTuc;
     } else {
       return _myProfile;
     }
@@ -84,32 +82,5 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       selectedIndex = index;
     });
-  }
-}
-
-class MyTinTuc extends StatelessWidget {
-  const MyTinTuc({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Tin Tức"));
-  }
-}
-
-class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Profile"));
-  }
-}
-
-class MyQuyDoi extends StatelessWidget {
-  const MyQuyDoi({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Profile"));
   }
 }

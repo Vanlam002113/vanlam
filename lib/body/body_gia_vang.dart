@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:gia_tien/board/broad_gia_vang.dart';
+
 import 'package:gia_tien/modal/gia_vang_sjc.dart';
 
 class MyGiaVang extends StatefulWidget {
+  const MyGiaVang({super.key});
+
   @override
   State<MyGiaVang> createState() => _MyGiaVangState();
 }
@@ -21,6 +24,11 @@ class _MyGiaVangState extends State<MyGiaVang>
   void dispose() {
     // Không cần giải phóng vì không còn AnimationController
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   void _onTap(int index) {
@@ -65,41 +73,40 @@ class _MyGiaVangState extends State<MyGiaVang>
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Text(
-          'Giá Vàng',
-          style: TextStyle(color: Colors.yellow),
-        ),
-        Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                children: [
-                  for (int i = 0; i < _isSelected.length; i++)
-                    Container(
-                      padding: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        color:
-                            _isSelected[i] ? Colors.yellow : Colors.transparent,
-                        borderRadius: BorderRadius.circular(2.0),
-                      ),
-                      child: TextButton(
-                        onPressed: () => _onTap(i),
-                        child: Text(
-                            '${i == 0 ? 'SJC' : i == 1 ? 'PNJ' : i == 2 ? 'DOJI' : 'Mi Hồng'}'),
-                      ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Row(
+              children: [
+                for (int i = 0; i < _isSelected.length; i++)
+                  Container(
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      color:
+                          _isSelected[i] ? Colors.yellow : Colors.transparent,
+                      borderRadius: BorderRadius.circular(2.0),
                     ),
-                ],
-              ),
-              Container(
-                height: 5,
-                width: double.infinity,
-                color: Colors.yellow,
-              ),
-            ],
-          ),
+                    child: TextButton(
+                      onPressed: () => _onTap(i),
+                      child: Text(i == 0
+                          ? 'SJC'
+                          : i == 1
+                              ? 'PNJ'
+                              : i == 2
+                                  ? 'DOJI'
+                                  : 'Mi Hồng'),
+                    ),
+                  ),
+              ],
+            ),
+            Container(
+              height: 5,
+              width: double.infinity,
+              color: Colors.yellow,
+            ),
+          ],
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text("Loại Vàng"),
@@ -112,7 +119,7 @@ class _MyGiaVangState extends State<MyGiaVang>
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text('Hồ Chí Minh'),
+                  const Text('Đà Nẵng'),
                   Column(
                     children:
                         item1s.map((item) => GiaVang(item: item)).toList(),
@@ -126,7 +133,7 @@ class _MyGiaVangState extends State<MyGiaVang>
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text('Đà Nẵng'),
+                  const Text('Đà Nẵng'),
                   Column(
                     children:
                         item1s.map((item) => GiaVang(item: item)).toList(),
@@ -140,7 +147,7 @@ class _MyGiaVangState extends State<MyGiaVang>
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text('Huế'),
+                  const Text('Huế'),
                   Column(
                     children:
                         item1s.map((item) => GiaVang(item: item)).toList(),
@@ -154,7 +161,7 @@ class _MyGiaVangState extends State<MyGiaVang>
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text('Hà Nội'),
+                  const Text('Hà Nội'),
                   Column(
                     children:
                         item1s.map((item) => GiaVang(item: item)).toList(),

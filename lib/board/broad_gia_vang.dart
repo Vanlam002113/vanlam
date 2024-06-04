@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class GiaVang extends StatelessWidget {
   GiaVang({super.key, required this.item});
+  // ignore: prefer_typing_uninitialized_variables
   var item;
 
   @override
