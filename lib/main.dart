@@ -3,6 +3,7 @@ import 'package:gia_tien/body/body_gia_vang.dart';
 import 'package:gia_tien/body/body_quy_doi.dart';
 import 'package:gia_tien/body/body_ty_gia.dart';
 import 'package:gia_tien/body/lib/body_profile.dart';
+import 'package:gia_tien/modal/model_data.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive/hive.dart';
 
@@ -10,6 +11,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
+
+  Hive.registerAdapter(
+      ModelClassAdapter()); // Register your adapter if using custom data model
+  await Hive.openBox('selectedValues');
 
   runApp(const MyApp());
 }
