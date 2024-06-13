@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gia_tien/body/body_gia_vang.dart';
 import 'package:gia_tien/body/body_quy_doi.dart';
 import 'package:gia_tien/body/body_ty_gia.dart';
-import 'package:gia_tien/body/lib/body_profile.dart';
+import 'package:gia_tien/body/body_profile.dart';
 import 'package:gia_tien/modal/model_data.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive/hive.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Giá Vàng",
+      title: "Tỷ Giá",
       home: MyHomePage(),
     );
   }
@@ -56,12 +56,11 @@ class _MyHomePageState extends State<MyHomePage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: "Tỷ Giá"),
+          BottomNavigationBarItem(icon: Icon(Icons.sync), label: "Tỷ Giá"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.money_off_csred_outlined),
-              label: "Quy Đổi Tiền"),
+              icon: Icon(Icons.attach_money), label: "Quy Đổi VND"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.attach_money), label: "Giá Vàng"),
+              icon: Icon(Icons.attach_money), label: "Đổi Ngoại Tệ"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
         ],
         onTap: (int index) {

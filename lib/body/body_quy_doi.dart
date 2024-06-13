@@ -31,6 +31,29 @@ class _MyQuyDoiState extends State<MyQuyDoi>
   Widget calculatedResult = const Text('');
   Widget calculatedResult2 = const Text('');
 
+  Map<String, Image> imageLookupTable = {
+    'AUD': Image.asset('assets/images/AUD.png'),
+    'CAD': Image.asset('assets/images/CAD.png'),
+    'CHF': Image.asset('assets/images/CHF.png'),
+    'CNY': Image.asset('assets/images/CNY.png'),
+    'DKK': Image.asset('assets/images/DKK.png'),
+    'EUR': Image.asset('assets/images/EUR.png'),
+    'GBP': Image.asset('assets/images/GBP.png'),
+    'HKD': Image.asset('assets/images/HKD.png'),
+    'INR': Image.asset('assets/images/INR.png'),
+    'JPY': Image.asset('assets/images/JPY.png'),
+    'KRW': Image.asset('assets/images/KRW.png'),
+    'KWD': Image.asset('assets/images/KWD.png'),
+    'MYR': Image.asset('assets/images/MYR.png'),
+    'NOK': Image.asset('assets/images/NOK.png'),
+    'RUB': Image.asset('assets/images/RUB.png'),
+    'SAR': Image.asset('assets/images/SAR.png'),
+    'SEK': Image.asset('assets/images/SEK.png'),
+    'SGD': Image.asset('assets/images/SGD.png'),
+    'THB': Image.asset('assets/images/THB.png'),
+    'USD': Image.asset('assets/images/USD.png'),
+  };
+
   String formatNumber(double number) {
     final formatter = NumberFormat.decimalPattern();
     return formatter.format(number);
@@ -176,7 +199,14 @@ class _MyQuyDoiState extends State<MyQuyDoi>
                 _isExpanded = !_isExpanded;
               });
             },
-            child: Text(_isExpanded ? 'Trở Lại' : 'Chọn Loại Tiền'),
+            child: Text(
+              _isExpanded
+                  ? 'Trở Lại'
+                  : (selectedValueToShow != null &&
+                          selectedValueToShow!.isNotEmpty)
+                      ? selectedValueToShow!
+                      : 'EUR',
+            ),
           ),
           Visibility(
             visible: _isExpanded,
@@ -208,6 +238,7 @@ class _MyQuyDoiState extends State<MyQuyDoi>
                               setState(() {
                                 sellItemColors[item['Sell'] ?? ''] =
                                     Colors.blue;
+                                selectedValueToShow = item['CurrencyCode'];
                               });
 
                               String selectedValue = item['Sell'] ?? 'N/A';
@@ -247,6 +278,18 @@ class _MyQuyDoiState extends State<MyQuyDoi>
                           ));
                         },
                       ),
+          ),
+
+          Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image:
+                      imageLookupTable[selectedValueToShow ?? 'EUR']?.image ??
+                          const AssetImage('assets/images/EUR.png'),
+                )),
           ),
 
           // ngoai tệ ra việt nam đồng

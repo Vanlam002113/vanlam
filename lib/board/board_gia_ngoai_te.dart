@@ -14,7 +14,7 @@ class GiaNgoaiTe extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Colors.amber,
+        color: const Color.fromARGB(255, 235, 238, 240),
       ),
       height: 20,
       margin: const EdgeInsets.only(bottom: 10),

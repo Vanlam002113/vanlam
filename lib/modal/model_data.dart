@@ -13,11 +13,14 @@ class ModelClass {
   final int value2;
   @HiveField(4)
   final String email;
+  @HiveField(5)
+  final int value3;
 
   ModelClass(
       {required this.username,
       required this.passwork,
       required this.value,
       required this.value2,
-      required this.email});
+      required this.email,
+      required this.value3});
 }
